@@ -1,4 +1,11 @@
-# Quantum-Assisted Semantic Information Retrieval: Ranking and Evaluation
+# Quantum-Assisted Semantic Information Retrieval for Ranking and Evaluation
+
+[![Python 3.11](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![Sentence Transformers](https://img.shields.io/badge/Sentence%20Transformers-Semantic%20Embeddings-FF6F00)](https://www.sbert.net/)
+[![Qiskit](https://img.shields.io/badge/Qiskit-Quantum%20Machine%20Learning-6929C4)](https://www.ibm.com/quantum/qiskit)
+[![FAISS](https://img.shields.io/badge/FAISS-Vector%20Retrieval-0467DF)](https://github.com/facebookresearch/faiss)
+[![Tests](https://img.shields.io/badge/Tests-18%20passing-success)](tests/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 This project retrieves and ranks documents from the 20 Newsgroups and
 Reuters-21578 datasets. It uses Sentence Transformer embeddings and FAISS for
@@ -60,7 +67,7 @@ flowchart LR
 ## Repository Structure
 
 ```text
-quantum-assisted-semantic-information-retrieval-ranking-and-evaluation/
+quantum-assisted-semantic-information-retrieval-for-ranking-and-evaluation/
 |-- data/
 |   |-- 20_newsgroups/     # Newsgroups category folders and documents
 |   `-- reuters21578/      # Reuters SGML source files
