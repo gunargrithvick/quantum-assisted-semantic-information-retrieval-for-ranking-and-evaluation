@@ -1,0 +1,11 @@
+"""Application configuration and reproducibility constants."""
+from pathlib import Path
+
+PROJECT_ROOT=Path(__file__).resolve().parent
+DATA_ROOT=PROJECT_ROOT / "data"
+EMBEDDING_MODEL_NAME="all-MiniLM-L6-v2"
+EMBEDDING_CACHE_VERSION=1
+MODEL_STATE_VERSION=1
+CLASSICAL_RANK_WEIGHT=0.10
+QUANTUM_RANK_WEIGHT=0.50
+QSVM_RANK_WEIGHT=0.40
