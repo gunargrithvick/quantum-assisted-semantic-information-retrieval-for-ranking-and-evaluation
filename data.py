@@ -4,6 +4,74 @@ import numpy as np
 
 from text import clean_text
 
+
+def deduplicate_documents(docs,labels,topics=None):
+
+    """Keep the first occurrence of each non-empty document text."""
+
+    if len(docs)!=len(labels):
+        raise ValueError("Documents and labels must have the same length")
+
+    if topics is not None and len(topics)!=len(docs):
+        raise ValueError("Topics must align with documents")
+
+    seen=set()
+    keep=[]
+
+    for index,document in enumerate(docs):
+        text=str(document).strip()
+
+        if not text or text in seen:
+            continue
+
+        seen.add(text)
+        keep.append(index)
+
+    unique_docs=[docs[index] for index in keep]
+    unique_labels=[labels[index] for index in keep]
+
+    if topics is None:
+        return unique_docs,unique_labels
+
+    return unique_docs,unique_labels,[topics[index] for index in keep]
+
+
+def remove_cross_split_duplicates(
+    train_docs,train_labels,eval_docs,eval_labels,
+    train_topics=None,eval_topics=None,
+):
+
+    """Remove held-out records whose exact text exists in training data."""
+
+    if len(train_docs)!=len(train_labels) or len(eval_docs)!=len(eval_labels):
+        raise ValueError("Documents and labels must align in both splits")
+
+    if (train_topics is None)!=(eval_topics is None):
+        raise ValueError("Train and evaluation topics must be provided together")
+
+    if train_topics is not None and (
+        len(train_topics)!=len(train_docs) or len(eval_topics)!=len(eval_docs)
+    ):
+        raise ValueError("Topics must align with their document splits")
+
+    train_texts={str(document).strip() for document in train_docs if str(document).strip()}
+    keep=[
+        index for index,document in enumerate(eval_docs)
+        if str(document).strip() and str(document).strip() not in train_texts
+    ]
+
+    filtered_docs=[eval_docs[index] for index in keep]
+    filtered_labels=[eval_labels[index] for index in keep]
+
+    if train_topics is None:
+        return list(train_docs),list(train_labels),filtered_docs,filtered_labels
+
+    filtered_topics=[eval_topics[index] for index in keep]
+    return (
+        list(train_docs),list(train_labels),filtered_docs,filtered_labels,
+        list(train_topics),filtered_topics,
+    )
+
 def load_newsgroups(path,progress=True):
 
     path=os.fspath(path)
@@ -14,6 +82,7 @@ def load_newsgroups(path,progress=True):
     docs=[]
     labels=[]
     skipped=[]
+    seen_documents=set()
     label_id=0
     processed=0
 
@@ -49,7 +118,13 @@ def load_newsgroups(path,progress=True):
                     if len(parts)>1:
                         text=parts[1]
 
-                    docs.append(clean_text(text))
+                    text=clean_text(text)
+
+                    if not text or text in seen_documents:
+                        continue
+
+                    seen_documents.add(text)
+                    docs.append(text)
                     labels.append(label_id)
 
             except (OSError,UnicodeError) as exc:
@@ -136,6 +211,8 @@ def load_reuters(path,split=None,return_topics=False,progress=True):
 
     print("Documents loaded:",len(docs))
 
+    docs,labels,topic_sets=deduplicate_documents(docs,labels,topic_sets)
+
     if return_topics:
         return docs,labels,topic_sets
 
@@ -146,6 +223,8 @@ def load_reuters(path,split=None,return_topics=False,progress=True):
 def split_documents(docs,labels,eval_fraction=0.2,seed=42):
 
     """Create a deterministic per-class train/evaluation split."""
+
+    docs,labels=deduplicate_documents(docs,labels)
 
     if len(docs)!=len(labels):
         raise ValueError("Documents and labels must have the same length")

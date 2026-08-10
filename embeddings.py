@@ -5,7 +5,7 @@ import json
 import numpy as np
 import torch
 
-from config import EMBEDDING_CACHE_VERSION, EMBEDDING_MODEL_NAME, PROJECT_ROOT
+from config import EMBEDDING_CACHE_VERSION, EMBEDDING_MODEL_NAME, MODEL_ROOT
 
 def _load_embedding_model(device=None):
 
@@ -51,7 +51,7 @@ def generate_embeddings(docs,dataset_name,labels=None):
     if labels is not None and len(docs)!=len(labels):
         raise ValueError("Documents and labels must have the same length")
 
-    cache_path=PROJECT_ROOT / f"embeddings_{dataset_name}.npy"
+    cache_path=MODEL_ROOT / f"embeddings_{dataset_name}.npy"
     metadata_path=cache_path.with_suffix(".json")
     fingerprint=_input_fingerprint(docs,labels)
 
@@ -93,6 +93,7 @@ def generate_embeddings(docs,dataset_name,labels=None):
     if not np.isfinite(embeddings).all():
         raise RuntimeError("Embedding model returned non-finite values")
 
+    MODEL_ROOT.mkdir(parents=True,exist_ok=True)
     np.save(cache_path,embeddings)
     metadata_path.write_text(json.dumps({
         "cache_version":EMBEDDING_CACHE_VERSION,

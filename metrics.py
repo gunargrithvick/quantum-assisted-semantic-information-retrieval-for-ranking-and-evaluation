@@ -45,8 +45,29 @@ def precision_at_k(ranked,relevant,k):
     return rel/available
 
 
+def recall_at_k(ranked,relevant,k):
+
+    """Recall at k for a ranked candidate list with known relevant IDs."""
+
+    if k<=0:
+        raise ValueError("k must be positive")
+
+    relevant=set(relevant)
+
+    if not relevant:
+        return 0.0
+
+    return len(set(ranked[:k]).intersection(relevant))/len(relevant)
+
+
 
 def compute_map(ranked,relevant,cutoff=10):
+
+    """Compute truncated average precision at ``cutoff``.
+
+    The denominator is ``min(number_of_relevant_documents, cutoff)``. This is
+    the standard AP@k convention for a ranked list truncated at k.
+    """
 
     if cutoff<=0:
         raise ValueError("cutoff must be positive")
@@ -73,6 +94,8 @@ def compute_map(ranked,relevant,cutoff=10):
 
 
 def compute_ndcg(ranked,relevant,cutoff=10):
+
+    """Compute binary-relevance NDCG at ``cutoff`` with an ideal DCG bound."""
 
     if cutoff<=0:
         raise ValueError("cutoff must be positive")

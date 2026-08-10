@@ -10,6 +10,13 @@ from plotting import display_current_plot
 
 def analyze_features(X,show_plot=False):
 
+    """Return an unsupervised, training-only variance weighting heuristic.
+
+    Each feature receives its variance divided by the mean feature variance,
+    so the average weight remains one while higher-variance dimensions receive
+    more emphasis. Training functions call this only on training embeddings.
+    """
+
     X=np.asarray(X,dtype=float)
 
     if X.ndim!=2 or X.shape[0]==0 or X.shape[1]==0:

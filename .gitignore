@@ -1,0 +1,38 @@
+# Python bytecode and virtual environments
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+
+# Test, lint, and coverage output
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# Generated embeddings and trained pipeline state
+models/
+embeddings_*.npy
+embeddings_*.json
+model_*_train.pkl
+*.tmp
+
+# Raw datasets downloaded separately
+data/20_newsgroups/*
+data/reuters21578/*
+
+# Local configuration and editor files
+.env
+.env.*
+!.env.example
+.vscode/
+.idea/
+.ipynb_checkpoints/
+
+# Operating-system and log files
+.DS_Store
+Thumbs.db
+*.log
