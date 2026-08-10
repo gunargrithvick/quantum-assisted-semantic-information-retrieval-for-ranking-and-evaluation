@@ -70,24 +70,6 @@ flowchart LR
   the final pipeline on all training documents.
 - Evaluate held-out documents and display comparison graphs.
 
-## Screenshots
-
-### Training and Model Setup
-
-![Training and model setup](screenshots/training.png)
-
-### Semantic Search and Ranking
-
-![Semantic search and ranking](screenshots/search-ranking.png)
-
-### Evaluation Metrics
-
-![Evaluation metrics](screenshots/evaluation-metrics.png)
-
-### Evaluation Graph
-
-![Evaluation graph](screenshots/evaluation-graph.png)
-
 ## Technology Stack
 
 | Area | Technology |
