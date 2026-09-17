@@ -58,8 +58,8 @@ flowchart LR
 - Cluster document embeddings for analysis and retrieve global candidates with
   FAISS; hard cluster exclusion is disabled to protect candidate recall.
 - Merge semantic and TF-IDF candidate channels with reciprocal-rank fusion.
-- Generate fidelity quantum kernels with `ZZFeatureMap` and local statevector
-  simulation.
+- Generate fidelity quantum kernels with Qiskit's `zz_feature_map` and local
+  statevector simulation.
 - Train a query-document pairwise precomputed-kernel SVM for relevance.
 - Train a document-topic QSVM prior; Reuters uses multi-label topic scoring.
 - Compare simple lexical, TF-IDF, classical semantic, and quantum-assisted
@@ -78,7 +78,7 @@ flowchart LR
 | Semantic embeddings | Sentence Transformers (`all-MiniLM-L6-v2`) |
 | Classical retrieval | FAISS, scikit-learn, NumPy |
 | Quantum machine learning | Qiskit and Qiskit Machine Learning |
-| Quantum simulation | `FidelityStatevectorKernel` with `ZZFeatureMap` |
+| Quantum simulation | `FidelityStatevectorKernel` with `zz_feature_map` |
 | Classification and ranking | Pairwise precomputed-kernel SVC and one-vs-rest SVC |
 | Data processing | Beautiful Soup, NumPy |
 | Evaluation and graphs | Custom IR metrics, Matplotlib, Seaborn |
