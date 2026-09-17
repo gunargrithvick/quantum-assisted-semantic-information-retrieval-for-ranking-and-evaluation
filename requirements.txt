@@ -1,0 +1,17 @@
+# Numerical computing and classical machine learning
+numpy==2.4.6
+scikit-learn==1.9.0
+torch==2.12.0
+
+# Semantic embeddings and vector retrieval
+sentence-transformers==5.5.1
+faiss-cpu==1.15.0
+
+# Quantum simulation and quantum machine learning
+qiskit==2.5.1
+qiskit-machine-learning==0.9.0
+
+# Evaluation plots and dataset parsing
+matplotlib==3.11.0
+seaborn==0.13.2
+beautifulsoup4==4.14.3

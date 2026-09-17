@@ -1,0 +1,22 @@
+[project]
+name = "quantum-assisted-semantic-information-retrieval"
+version = "1.0.0"
+description = "A reproducible hybrid semantic and quantum-assisted information retrieval research application."
+readme = "README.md"
+requires-python = ">=3.11,<3.12"
+license = { file = "LICENSE" }
+authors = [
+    { name = "Guna Rithvick" },
+]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+extend-exclude = ["data", "models"]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
