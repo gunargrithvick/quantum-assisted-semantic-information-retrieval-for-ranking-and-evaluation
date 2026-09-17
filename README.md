@@ -143,7 +143,10 @@ quantum-assisted-semantic-information-retrieval-for-ranking-and-evaluation/
 `-- requirements-dev.txt   # Runtime dependencies plus development tooling
 ```
 
-## Installation and Run
+## Detailed Installation and Run
+
+The Quick Start above is the shortest path. This section gives the full setup,
+including the expected data directories and the available local run steps.
 
 Python 3.11.x is required. Confirm that the active interpreter is in the
 supported range before installing dependencies:
@@ -398,4 +401,4 @@ Guna Rithvick
 
 ## License
 
-This project is available under the [MIT License](LICENSE.txt).
+This project is available under the [MIT License](LICENSE).
