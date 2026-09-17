@@ -253,9 +253,11 @@ before ranking.
 
 ### Reproducing the reference runs
 
-The tables below are recorded reference runs, not hard-coded application
-outputs. To reproduce them, use Python 3.11.x, install the pinned runtime
-requirements, download the exact dataset releases described in Dataset Setup,
+The tables below are full-dataset reference benchmark results produced from
+the project’s 20 Newsgroups and Reuters-21578 runs. They are recorded results,
+not hard-coded application outputs. To reproduce them, use Python 3.11.x,
+install the pinned runtime requirements, download the exact dataset releases
+described in Dataset Setup,
 place the files in the documented directories, and run `python main.py` from
 the project folder. Train the relevant dataset model with menu option 1 or 2,
 then run the evaluation from menu option 5. Menu option 7 repeats the
@@ -334,9 +336,9 @@ dimensions.
 
 Run menu option 6 to display the comparison graphs.
 
-The tables above are recorded reference runs. Re-running may produce
-different values because results depend on the exact dataset files, dependency
-versions, model cache, fixed seeds, and local execution environment.
+These are recorded reference results from the full datasets. Re-running may
+produce different values because results depend on the exact dataset files,
+dependency versions, model cache, fixed seeds, and local execution environment.
 
 ## Deployment
 
