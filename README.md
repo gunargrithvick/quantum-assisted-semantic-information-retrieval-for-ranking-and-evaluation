@@ -90,9 +90,13 @@ flowchart LR
 quantum-assisted-semantic-information-retrieval-for-ranking-and-evaluation/
 |-- data/                  # Local datasets; not included in repository
 |   |-- 20_newsgroups/     # Locally extracted Newsgroups category folders
-|   `-- reuters21578/      # Locally extracted Reuters SGML source files
+|   |-- reuters21578/      # Locally extracted Reuters SGML source files
+|   `-- README.md          # Dataset placement and provenance notes
 |-- models/                # Generated artifacts; not included in repository
 |-- tests/                 # Automated regression and smoke tests
+|-- .github/
+|   `-- workflows/ci.yml  # Continuous integration quality checks
+|-- .python-version        # Recommended Python version for local tooling
 |-- app.py                 # Application state, training, ranking, and CLI
 |-- config.py              # Paths, versions, and ranking weights
 |-- data.py                # Dataset loading and train/evaluation splitting
@@ -103,9 +107,11 @@ quantum-assisted-semantic-information-retrieval-for-ranking-and-evaluation/
 |-- quantum.py             # Quantum kernel and retrieval support utilities
 |-- text.py                # Text normalization and output formatting
 |-- .gitignore             # Ignored generated and local files
+|-- pyproject.toml         # Project metadata and Ruff configuration
 |-- LICENSE                # MIT License
 |-- README.md              # Project documentation
-`-- requirements.txt       # Pinned Python dependencies
+|-- requirements.txt       # Pinned runtime dependencies
+`-- requirements-dev.txt   # Runtime dependencies plus development tooling
 ```
 
 ## Installation and Run
