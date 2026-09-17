@@ -16,6 +16,35 @@ fused into a shared 100-document pool, then uses a query-document fidelity
 quantum kernel and QSVM scores for final ranking. Quantum computation runs
 locally with statevector simulation.
 
+This is a local command-line research application, not a hosted web application
+or an API. It compares classical and quantum-assisted ranking methods on the
+same candidate pool and reports information-retrieval metrics. The quantum
+components run in simulation; no quantum hardware is required.
+
+## Quick Start
+
+The project requires Python 3.11.x. After cloning the repository, create an
+environment and install the pinned dependencies:
+
+```powershell
+python -m venv .venv
+.venv\Scripts\python -m pip install --upgrade pip
+.venv\Scripts\python -m pip install -r requirements.txt
+```
+
+Download and place the two datasets as described in [Dataset Setup](#dataset-setup),
+then start the local CLI:
+
+```powershell
+.venv\Scripts\python main.py
+```
+
+The menu lets you train a dataset model, load a saved model, search documents,
+run held-out evaluation, and display graphs. Full training can be slow and
+memory-intensive because the quantum kernels use local statevector simulation.
+The implementation limits the pairwise and QSVM training samples and reduces
+kernel inputs to at most four features to keep the experiments practical.
+
 ## Project Scope
 
 - Task: Semantic document retrieval and ranking
