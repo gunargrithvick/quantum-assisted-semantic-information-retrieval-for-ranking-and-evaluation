@@ -8,9 +8,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 This project retrieves and ranks documents from 20 Newsgroups and
-Reuters-21578, Distribution 1.0. The raw datasets are not included in the
-repository; download them separately and place them in the required `data/`
-directories using the Dataset Setup section below. The project uses Sentence
+Reuters-21578, Distribution 1.0. Download and place the datasets in the
+required `data/` directories using the Dataset Setup section below. The
+project uses Sentence
 Transformer embeddings and FAISS for semantic and TF-IDF candidate retrieval
 fused into a shared 100-document pool, then uses a query-document fidelity
 quantum kernel and QSVM scores for final ranking. Quantum computation runs
@@ -88,11 +88,11 @@ flowchart LR
 
 ```text
 quantum-assisted-semantic-information-retrieval-for-ranking-and-evaluation/
-|-- data/                  # Local datasets; not included in repository
+|-- data/                  # Dataset inputs created during setup
 |   |-- 20_newsgroups/     # Locally extracted Newsgroups category folders
 |   |-- reuters21578/      # Locally extracted Reuters SGML source files
 |   `-- README.md          # Dataset placement and provenance notes
-|-- models/                # Generated artifacts; not included in repository
+|-- models/                # Generated artifacts created by training
 |-- tests/                 # Automated regression and smoke tests
 |-- .github/
 |   `-- workflows/ci.yml  # Continuous integration quality checks
@@ -131,10 +131,9 @@ python -m venv .venv
 .venv\Scripts\python -m pip install -r requirements.txt
 ```
 
-The raw datasets are not included in this repository. Download and extract
-them separately according to the Dataset Setup section below. The application
-creates `models/` automatically for generated embeddings and trained model
-files:
+Download and extract the datasets according to the Dataset Setup section
+below. The application creates `models/` automatically for generated
+embeddings and trained model files:
 
 ```text
 data/
@@ -158,8 +157,8 @@ the `all-MiniLM-L6-v2` model unless it is already cached locally.
 
 ## Dataset Setup
 
-The raw datasets are not included in this repository. Download them separately
-and place the extracted files in the directories described below.
+Download the datasets and place the extracted files in the directories
+described below.
 
 ### 20 Newsgroups
 
@@ -263,12 +262,11 @@ the project folder. Train the relevant dataset model with menu option 1 or 2,
 then run the evaluation from menu option 5. Menu option 7 repeats the
 multi-seed evaluation.
 
-The repository intentionally excludes raw datasets, embedding caches, and
-trained model artifacts. Exact byte-for-byte reproduction therefore depends on
-the downloaded archive contents, dependency versions, cached model files,
-random seeds, and local hardware. Record the dataset archive name, SHA-256
-checksum, execution date, Python version, operating system, and CPU/GPU when
-creating a new benchmark. On Windows, calculate an archive checksum with
+Exact byte-for-byte reproduction depends on the downloaded archive contents,
+dependency versions, cached model files, random seeds, and local hardware.
+Record the dataset archive name, SHA-256 checksum, execution date, Python
+version, operating system, and CPU/GPU when creating a new benchmark. On
+Windows, calculate an archive checksum with
 `Get-FileHash path\to\archive -Algorithm SHA256`; on macOS/Linux, use
 `shasum -a 256 path/to/archive`.
 
